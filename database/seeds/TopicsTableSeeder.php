@@ -18,11 +18,12 @@ class TopicsTableSeeder extends Seeder
 
         $faker = Factory::create();
         Topic::truncate();
-        foreach(range(5, 10) as $i) {
+        foreach(range(50, 1000) as $i) {
             Topic::create([
                 'user_id' => 1,
                 'uuid' => Str::uuid(),
                 'title' => $faker->text(rand(10, 80)),
+                'slug' => preg_replace('/\s+/', '-', $faker->realText(rand(10, 30))),
                 'message' => $faker->realText(rand(80, 600)),
             ]);
         }

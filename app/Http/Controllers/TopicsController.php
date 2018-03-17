@@ -29,7 +29,7 @@ class TopicsController extends Controller
      */
     public function index()
     {
-        $topics = Topic::latest()->get();
+        $topics = Topic::latest()->paginate(15);
 
         $topic_counter = Topic::get()->count();
 

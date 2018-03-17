@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('custom_css')
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -18,7 +21,7 @@
                 <h5 class="card-header">General Support</h5>
                 <div class="card-body">
 
-                    <table id="topic_table" class="table table-striped">
+                    <table id="myTable" class="table table-striped">
                         @if($topic_counter != null)
                         <thead>
 
@@ -47,9 +50,9 @@
                                     @endif
                                 </td>
                                 @if($topic->replies->count() != null)
-                                <td>Replied by <a href="#">{{ $lastresponse->user->name }}</a> {{$lastresponse->created_at->diffForHumans()}}</td>
+                                        <td>Replied by <a href="#">{{ $lastresponse->user->name }}</a> {{$lastresponse->created_at->diffForHumans()}}</td>
                                 @else
-                                <td>Posted by <a href="#">{{ $topic->user->name }}</a> {{$topic->created_at->diffForHumans()}}</td>
+                                    <td>Posted by <a href="#">{{ $topic->user->name }}</a> {{$topic->created_at->diffForHumans()}}</td>
                                 @endif
                             </tr>
                             @endforeach
@@ -57,7 +60,9 @@
                         </tbody>
 
                     </table>
-
+                    <ul class="pagination justify-content-end">
+                        {{ $topics->links() }}
+                    </ul>
                 </div>
                 <div class="card-footer text-muted">
                  
@@ -86,11 +91,5 @@
 @endsection
 
 @section('custom_js')
-
-<script>
-    // $(document).ready( function () {
-    //     $('#topic_table').DataTable();
-    // } );
-</script>
 
 @endsection

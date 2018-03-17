@@ -17,10 +17,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    {{--  Style DataTables  --}}
-    {{--  <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.min.css') }}"/>  --}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
     @yield('custom_css')
+
 </head>
 <body>
     <div id="app">
@@ -81,9 +79,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     
-
 </body>
 </html>
