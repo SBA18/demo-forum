@@ -30,7 +30,7 @@
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b>{{ $topic->user->name }}</b></a>
+                            <a href="{{ route('users', $topic->user->uuid) }}"><b>{{ $topic->user->name }}</b></a>
                         </div>
                     <h6 class="text-muted time">{{ $topic->created_at->diffForHumans() }}</h6>
                     </div>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <br>
-
+            {{--  Replies  --}}
             @if($reply_counter != null)
                 @foreach($topic->replies as $reply)
                 <div class="panel panel-white post panel-shadow">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="pull-left meta">
                             <div class="title h5">
-                                <a href="#"><b>{{ $reply->user->name }}</b></a>
+                                <a href="{{ route('dashboard', $reply->user->uuid) }}"><b>{{ $reply->user->name }}</b></a>
                             </div>
                         <h6 class="text-muted time">{{ $reply->created_at->diffForHumans() }}</h6>
                         </div>

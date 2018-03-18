@@ -27,3 +27,6 @@ Route::resource('topics', 'TopicsController');
 Route::post('topics/{topic}/reply', 'RepliesController@store')->name('post_reply');
 
 Route::get('topics/{topic}/replies', 'TopicsController@show')->name('reply');
+
+
+Route::get('users/{uuid}', 'UsersController@show')->name('users');

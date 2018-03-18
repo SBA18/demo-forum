@@ -19,17 +19,19 @@ class UsersTableSeeder extends Seeder
         User::truncate();
 
         User::create([
+            'uuid' => Str::uuid(),
             'name' => 'Sawers SAW',
             'email' => 'sawers@saw.com',
             'password' => bcrypt('secret'),
         ]);
 
-        // foreach(range(1, 2) as $i) {
-        //     User::create([
-        //         'name' => $faker->firstname,
-        //         'email' => $faker->safeEmail,
-        //         'password' => bcrypt('secret'),
-        //     ]);
-        // }
+        foreach(range(1, 20) as $i) {
+            User::create([
+                'uuid' => Str::uuid(),
+                'name' => $faker->firstname,
+                'email' => $faker->safeEmail,
+                'password' => bcrypt('secret'),
+            ]);
+        }
     }
 }
