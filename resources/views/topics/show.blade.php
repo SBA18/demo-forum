@@ -51,7 +51,7 @@
                         </div>
                         <div class="pull-left meta">
                             <div class="title h5">
-                                <a href="{{ route('dashboard', $reply->user->uuid) }}"><b>{{ $reply->user->name }}</b></a>
+                                <a href="{{ route('users', $reply->user->uuid) }}"><b>{{ $reply->user->name }}</b></a>
                             </div>
                         <h6 class="text-muted time">{{ $reply->created_at->diffForHumans() }}</h6>
                         </div>
