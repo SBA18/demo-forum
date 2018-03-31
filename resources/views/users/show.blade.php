@@ -16,10 +16,63 @@
             </nav>
         </div>  
     </div>
-
-    <div class="row justify-content-center"> 
+    <div class="row justify-content-center">
         <div class="col-md-12">
-        <p>{{$user->name}}</p>
+            <div class="card">
+                <h5 class="card-header">General Support</h5>
+                <div class="card-body">
+                    <h3>User Topics</h3>
+                    <table id="myTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width:650px;">Topics</th>
+                                <th scope="col" style="text-align:center;">Answers</th>
+                                <th scope="col">Last message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="">topic title</a></td>
+                                <td style="text-align:center;">64654654</td> 
+                                <td style="text-align:center;">64654654</td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination justify-content-end">
+                        Pagination
+                    </ul>
+
+
+                    <h3>User Replies</h3>
+                    <table id="myTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width:650px;">Topics</th>
+                                <th scope="col" style="text-align:center;">Answers</th>
+                                <th scope="col">Last message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="">topic title</a></td>
+                                <td style="text-align:center;">64654654</td> 
+                                <td style="text-align:center;">64654654</td> 
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination justify-content-end">
+                        Pagination
+                    </ul>
+
+                    <h3>User Activities</h3>
+                    <hr>
+                </div>
+                <div class="card-footer text-muted">
+                    
+                        Online users :
+                    
+                </div>
+            </div>
         </div>
     </div>
 </div>

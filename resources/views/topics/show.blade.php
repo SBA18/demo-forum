@@ -30,7 +30,7 @@
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="{{ route('users', $topic->user->uuid) }}"><b>{{ $topic->user->name }}</b></a>
+                            <a href="{{ route('user', $topic->user->uuid) }}"><b>{{ $topic->user->name }}</b></a>
                         </div>
                     <h6 class="text-muted time">{{ $topic->created_at->diffForHumans() }}</h6>
                     </div>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="pull-left meta">
                             <div class="title h5">
-                                <a href="{{ route('users', $reply->user->uuid) }}"><b>{{ $reply->user->name }}</b></a>
+                                <a href="{{ route('user', $reply->user->uuid) }}"><b>{{ $reply->user->name }}</b></a>
                             </div>
                         <h6 class="text-muted time">{{ $reply->created_at->diffForHumans() }}</h6>
                         </div>
