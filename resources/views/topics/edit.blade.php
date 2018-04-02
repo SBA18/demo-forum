@@ -1,25 +1,47 @@
-<div class="modal fade" id="edit_topic_modale" tabindex="-1" role="dialog" aria-labelledby="edit_topic_modale" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Topic</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form>
+@extends('layouts.app')
+@section('custom_css')
+<link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+@endsection
+@section('content')
 
-            <div class="form-group">
-                <label for="message-text" class="col-form-label">Topic Message:</label>
-                <textarea class="form-control" id="message-text" rows="15">{{ $topic->message }}</textarea>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ URL('/') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('topics.index') }}">Topics</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('topics.show', $topic->slug) }}">{{$topic->slug}}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit your topic -> {{str_limit($topic->message, 10)}} ....</li>
+                </ol>
+            </nav>
+        </div>
+        
+    </div>
+    
+    <div class="row justify-content-center"> 
+        <div class="col-md-12">
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-description">
+                    <form action="" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <label for="message">Update Topic</label>
+                            <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" name="message" id="message" rows="20">{{ $topic->message }}</textarea>
+                            @if ($errors->has('message'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('message') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <button type="submit" class="btn btn-default">Update Topic</button>
+                        <a href="{{ route('topics.show', $topic->slug) }}" class="btn btn-default">Back</a>
+                    </form>
+                </div>
             </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Update</button>
-        </div>
         </div>
     </div>
 </div>
+@endsection

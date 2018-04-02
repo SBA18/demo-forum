@@ -39,12 +39,12 @@
 
                         @if($reply_counter === 0)
 
-                            <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#edit_topic_modale"><i class="far fa-edit"></i></a>
-                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-edit"></i></a>
+                            <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
+                            <a href="{{route('topics.destroy', $topic->slug)}}" class="btn btn-danger btn-sm"><i class="far fa-edit"></i></a>
                         
                         @else
                         
-                            <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_topic_modale"><i class="far fa-edit"></i></a>
+                            <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
                             <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i></a>
 
                         @endif
@@ -163,8 +163,5 @@
         </div>
     </div>
 </div>
-
-@include('topics.edit')
-
 
 @endsection
