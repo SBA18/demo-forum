@@ -36,19 +36,19 @@
                     <h6 class="text-muted time">{{ $topic->created_at->diffForHumans() }}</h6>
                     </div>
                     <p class="text-right">
+                        @auth
+                            @if($reply_counter === 0)
 
-                        @if($reply_counter === 0)
+                                <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
+                                <a href="{{route('topics.destroy', $topic->slug)}}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                            
+                            @else
+                            
+                                <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
+                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></a>
 
-                            <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
-                            <a href="{{route('topics.destroy', $topic->slug)}}" class="btn btn-danger btn-sm"><i class="far fa-edit"></i></a>
-                        
-                        @else
-                        
-                            <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
-                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i></a>
-
-                        @endif
-
+                            @endif
+                        @endauth
                     </p>
                 </div> 
                 <div class="post-description">
@@ -82,8 +82,10 @@
                         <h6 class="text-muted time">{{ $reply->created_at->diffForHumans() }}</h6>
                         </div>
                         <p class="text-right">
+                            @auth
                             <a href="{{ route('edit_reply', $reply->id) }}" class="btn btn-warning btn-sm" ><i class="far fa-edit"></i></a>
-                            <a href="{{ route('delete_reply', $reply->id) }}" class="btn btn-danger btn-sm"><i class="far fa-edit"></i></a>
+                            <a href="{{ route('delete_reply', $reply->id) }}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                            @endauth
                         </p>
                     </div> 
                     <div class="post-description"> 
