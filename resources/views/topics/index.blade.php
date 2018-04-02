@@ -49,11 +49,8 @@
 
                                     @endif
                                 </td>
-                                @if($topic->replies->count() != null)
-                                    <td>Replied by <a href="{{ route('user', $topic->user->uuid) }}">{{ $lastresponse->user->name }}</a> {{$lastresponse->created_at->diffForHumans()}}</td>
-                                @else
-                                    <td>Posted by <a href="{{ route('user', $topic->user->uuid) }}">{{ $topic->user->name }}</a> {{$topic->created_at->diffForHumans()}}</td>
-                                @endif
+
+                                <td>Posted by <a href="{{ route('user', $topic->user->uuid) }}">{{ $topic->user->name }}</a> {{$topic->created_at->diffForHumans()}}</td>
                             </tr>
                             @endforeach
                             
