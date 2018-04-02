@@ -21,8 +21,10 @@
         </div>
         
     </div>
+    
     <div class="row justify-content-center"> 
         <div class="col-md-12">
+            {{-- Topic --}}
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
                     <div class="pull-left image">
@@ -35,11 +37,21 @@
                     <h6 class="text-muted time">{{ $topic->created_at->diffForHumans() }}</h6>
                     </div>
                 </div> 
-                <div class="post-description"> 
-                <p>{{ $topic->message }}</p>
-                    
+                <div class="post-description">
+                    {{-- Like and Dislike system --}}
+                    <p>{{ $topic->message }}</p>
+                    <div class="stats">
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-up icon"></i>2
+                        </a>
+                        <a href="#" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-down icon"></i>12
+                        </a>
+                    </div>
+                  
                 </div>
-            </div>
+                
+            </div> <!-- End Topic section  -->
             <br>
             {{--  Replies  --}}
             @if($reply_counter != null)
@@ -73,8 +85,9 @@
                 </div>
             
             @endif
-            
+            {{-- End Replies section --}}
         </div>
+        {{-- Reply form --}}
         <div class="col-md-12" style="margin-top:30px;">
             <div class="panel panel-white post panel-shadow">
                 <div class="post-description">
@@ -100,6 +113,7 @@
                 </div>
             </div>
         </div>
+        {{-- End Reply Form --}}
     </div>    
 </div>
 @endsection

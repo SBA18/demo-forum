@@ -35,6 +35,8 @@ class TopicsController extends Controller
 
         $lastresponse = Reply::latest()->first();
 
+        // dd($lastresponse);
+        
         return view('topics.index', compact('topics', 'lastresponse', 'topic_counter'));
     }
 
