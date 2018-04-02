@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\User;
+use App\Reply;
+use App\Topic;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -58,11 +60,13 @@ class UsersController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user, Topic $topic)
     {
-        // dd($user->toArray());
+        $topic_counter = Topic::where('user_id', $user->id)->count();
 
-        return view('users.show', compact('user'));
+        $reply_counter = Reply::where('user_id', $user->id)->count();
+
+        return view('users.show', compact('user', 'reply_counter', 'topic_counter'));
 
     }
 
