@@ -28,5 +28,10 @@ Route::post('topics/{topic}/reply', 'RepliesController@store')->name('post_reply
 
 Route::get('topics/{topic}/replies', 'TopicsController@show')->name('reply');
 
+Route::delete('reply/{reply}', 'RepliesController@destroy')->name('delete_reply');
+
+Route::get('reply/{reply}/edit', 'RepliesController@edit')->name('edit_reply');
+
+Route::put('reply/{reply}', 'RepliesController@update')->name('update_reply');
 
 Route::get('user/{uuid}', 'UsersController@show')->name('user');

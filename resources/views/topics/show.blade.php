@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('custom_css')
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 @endsection
@@ -32,10 +31,25 @@
                     </div>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="{{ route('user', $topic->user->uuid) }}"><b>{{ $topic->user->name }}</b></a>
+                            <a href="{{ route('user', $topic->user->uuid) }}"><b>{{ $topic->user->name }}</b></a> 
                         </div>
                     <h6 class="text-muted time">{{ $topic->created_at->diffForHumans() }}</h6>
                     </div>
+                    <p class="text-right">
+
+                        @if($reply_counter === 0)
+
+                            <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"  data-toggle="modal" data-target="#edit_topic_modale"><i class="far fa-edit"></i></a>
+                            <a href="" class="btn btn-danger btn-sm"><i class="far fa-edit"></i></a>
+                        
+                        @else
+                        
+                            <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit_topic_modale"><i class="far fa-edit"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i></a>
+
+                        @endif
+
+                    </p>
                 </div> 
                 <div class="post-description">
                     {{-- Like and Dislike system --}}
@@ -67,10 +81,21 @@
                             </div>
                         <h6 class="text-muted time">{{ $reply->created_at->diffForHumans() }}</h6>
                         </div>
+                        <p class="text-right">
+                            <a href="{{ route('edit_reply', $reply->id) }}" class="btn btn-warning btn-sm" ><i class="far fa-edit"></i></a>
+                            <a href="{{ route('delete_reply', $reply->id) }}" class="btn btn-danger btn-sm"><i class="far fa-edit"></i></a>
+                        </p>
                     </div> 
                     <div class="post-description"> 
-                    <p>{{ $reply->reply }}</p>
-                        
+                        <p>{{ $reply->reply }}</p>
+                        <div class="stats">
+                            <a href="#" class="btn btn-default stat-item">
+                                <i class="fa fa-thumbs-up icon"></i>2
+                            </a>
+                            <a href="#" class="btn btn-default stat-item">
+                                <i class="fa fa-thumbs-down icon"></i>12
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <br>
@@ -81,7 +106,7 @@
 
             @else
                 <div class="panel panel-white post panel-shadow alert alert-warning">
-                    <span class="">No replies yet !</span> 
+                    <span class="">No replies yet ! Be the first to answer at this topic</span> 
                 </div>
             
             @endif
@@ -116,10 +141,30 @@
         {{-- End Reply Form --}}
     </div>    
 </div>
-@endsection
 
-@section('custom_js')
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> <i class="far fa-exclamation-circle"></i>  Alert</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p class="alert alert-danger"><i class="far fa-exclamation-circle"></i>  <strong>You are not allowed to delete a topic with answers !</strong> </p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+@include('topics.edit')
 
 
 @endsection

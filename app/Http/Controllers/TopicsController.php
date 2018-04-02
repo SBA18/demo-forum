@@ -36,7 +36,7 @@ class TopicsController extends Controller
         $lastresponse = Reply::latest()->first();
 
         // dd($lastresponse);
-        
+
         return view('topics.index', compact('topics', 'lastresponse', 'topic_counter'));
     }
 
@@ -84,8 +84,8 @@ class TopicsController extends Controller
     public function show(Topic $topic)
     {
 
-        $reply_counter = Reply::get()->count();
-
+        $reply_counter = Reply::where('topic_id', $topic->id)->count();
+        // dd($reply_counter);
         // $replies = Reply::paginate(10);
 
         return view('topics.show', compact('topic', 'reply_counter', 'replies'));
@@ -99,7 +99,7 @@ class TopicsController extends Controller
      */
     public function edit(Topic $topic)
     {
-        //
+        return view('topics.edit', compact('topic'));
     }
 
     /**

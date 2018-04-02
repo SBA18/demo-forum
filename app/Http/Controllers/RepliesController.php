@@ -85,7 +85,7 @@ class RepliesController extends Controller
      */
     public function edit(Reply $reply)
     {
-        //
+        return view('replies.edit', compact('reply'));
     }
 
     /**
