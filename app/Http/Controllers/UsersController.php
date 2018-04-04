@@ -70,6 +70,12 @@ class UsersController extends Controller
 
     }
 
+    public function members()
+    {
+        $users = User::paginate(21);
+        return view('users.members', compact('users'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
