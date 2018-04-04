@@ -2,6 +2,7 @@
 
 @section('custom_css')
 
+@section('title', 'User activities')
 @endsection
 
 @section('content')

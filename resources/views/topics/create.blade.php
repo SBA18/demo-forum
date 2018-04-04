@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Create new topic')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -23,7 +25,7 @@
                     @csrf
                         <div class="form-group">
                             <label for="title">Topic title</label>
-                            <input type="text" name="title" id="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="Topic title" required>
+                            <input type="text" name="title" id="title" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="Topic title" value="{{ old('title') }}" required>
                             @if ($errors->has('title'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('title') }}</strong>
@@ -33,7 +35,7 @@
       
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" name="message" id="message" rows="3" required></textarea>
+                            <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" name="message" id="message" rows="3" required >{{ old('message') }}</textarea>
                             @if ($errors->has('message'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('message') }}</strong>

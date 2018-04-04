@@ -3,6 +3,8 @@
 @section('custom_css')
 @endsection
 
+@section('title', 'Topics')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -23,19 +25,19 @@
 
                     <table id="myTable" class="table table-striped">
                         @if($topic_counter != null)
-                        <thead>
+                            <thead>
 
-                            <tr>
-                                <th scope="col" style="width:650px;">Topics</th>
-                                <th scope="col" style="text-align:center;">Answers</th>
-                                <th scope="col">Last message</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col" style="width:650px;">Topics</th>
+                                    <th scope="col" style="text-align:center;">Answers</th>
+                                    <th scope="col">Posted By</th>
+                                </tr>
 
-                        </thead>
+                            </thead>
                         @else
-                    <p>No Topics created yet !!! Click <a href="{{ route('topics.create') }}"> <strong>here</strong> </a> to create you first Topic</p>
-
+                            <p>No Topics created yet !!! Click <a href="{{ route('topics.create') }}"> <strong>here</strong> </a> to create you first Topic</p>
                         @endif
+                        
                         <tbody>
                             @foreach($topics as $topic)
                             <tr>
