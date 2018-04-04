@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('custom_css')
+<link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.min.css') }}"/>
 @endsection
 
 @section('title', 'Topics')
@@ -28,9 +29,10 @@
                             <thead>
 
                                 <tr>
-                                    <th scope="col" style="width:650px;">Topics</th>
+                                    <th scope="col" style="width:500px;">Topics</th>
                                     <th scope="col" style="text-align:center;">Answers</th>
                                     <th scope="col">Posted By</th>
+                                    <th scope="col">Posted At</th>
                                 </tr>
 
                             </thead>
@@ -53,6 +55,7 @@
                                 </td>
 
                                 <td>Posted by <a href="{{ route('user', $topic->user->uuid) }}">{{ $topic->user->name }}</a> {{$topic->created_at->diffForHumans()}}</td>
+                                <td>{{$topic->updated_at->toDateTimeString()}}</td>
                             </tr>
                             @endforeach
                             
@@ -60,7 +63,6 @@
 
                     </table>
                     <ul class="pagination justify-content-end">
-                        {{ $topics->links() }}
                     </ul>
                 </div>
                 <div class="card-footer text-muted">
@@ -90,5 +92,20 @@
 @endsection
 
 @section('custom_js')
+<script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous">
+</script>
 
+<script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script>
+
+<script>
+    $(document).ready( function () {
+        $('#myTable').DataTable({
+            "order": [[ 3, "desc" ]],
+        });
+        
+    } );
+</script>
 @endsection

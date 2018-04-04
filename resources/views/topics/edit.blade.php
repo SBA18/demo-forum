@@ -16,7 +16,7 @@
                 <li class="breadcrumb-item"><a href="{{ URL('/') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('topics.index') }}">Topics</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('topics.show', $topic->slug) }}">{{$topic->slug}}</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit your topic -> {{str_limit($topic->message, 10)}} ....</li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit your topic -> {{str_limit($topic->title, 30)}} </li>
                 </ol>
             </nav>
         </div>
