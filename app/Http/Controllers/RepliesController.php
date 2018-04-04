@@ -97,7 +97,17 @@ class RepliesController extends Controller
      */
     public function update(Request $request, Reply $reply)
     {
-        //
+        // dd($request->all());
+
+        $this->validate(request(), [
+            'reply' => 'required|min:10',
+        ]);
+
+        $reply->reply = request('reply');
+        
+        $reply->save();
+
+        return redirect()->route('topics.show', $reply->topic);
     }
 
     /**
@@ -108,6 +118,8 @@ class RepliesController extends Controller
      */
     public function destroy(Reply $reply)
     {
-        //
+        $reply->delete();
+
+        return redirect()->route('topics.show', $reply->topic);
     }
 }

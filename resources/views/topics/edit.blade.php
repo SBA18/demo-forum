@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 @endsection
+
+@section('title', 'Edit topic')
+
 @section('content')
 
 <div class="container">
@@ -24,10 +27,20 @@
         <div class="col-md-12">
             <div class="panel panel-white post panel-shadow">
                 <div class="post-description">
-                    <form action="" method="post">
+                    <form action="{{ route('topics.update', $topic->slug) }}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
-                            <label for="message">Update Topic</label>
+                            <label for="title">Topic title</label>
+                            <input type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" id="title" rows="20" value="{{ $topic->title }}" />
+                            @if ($errors->has('title'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Topic description</label>
                             <textarea class="form-control{{ $errors->has('message') ? ' is-invalid' : '' }}" name="message" id="message" rows="20">{{ $topic->message }}</textarea>
                             @if ($errors->has('message'))
                                 <span class="invalid-feedback">

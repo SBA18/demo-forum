@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 @endsection
 
+@section('title', 'Topic' )
 
 @section('content')
 <div class="container">
@@ -24,6 +25,9 @@
     <div class="row justify-content-center"> 
         <div class="col-md-12">
             {{-- Topic --}}
+            <div class="panel panel-white post panel-shadow alert">
+                <span class=""><h1><strong>{{ str_limit($topic->title, 60) }}</strong></h1></span> 
+            </div>
             <div class="panel panel-white post panel-shadow">
                 <div class="post-heading">
                     <div class="pull-left image">
@@ -33,19 +37,29 @@
                         <div class="title h5">
                             <a href="{{ route('user', $topic->user->uuid) }}"><b>{{ $topic->user->name }}</b></a> 
                         </div>
-                    <h6 class="text-muted time">{{ $topic->created_at->diffForHumans() }}</h6>
+                    <h6 class="text-muted time">{{ $topic->created_at->diffForHumans() }}  
+                        @if($topic->created_at != $topic->updated_at)
+                            | This topic is updated by {{$topic->user->name}} at {{$topic->updated_at->diffForHumans()}} 
+                        @endif
+                    </h6>
                     </div>
                     <p class="text-right">
                         @auth
                             @if($reply_counter === 0)
 
-                                <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
-                                <a href="{{route('topics.destroy', $topic->slug)}}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-default btn-sm"><i class="far fa-edit"></i></a>
+                                
+                                <a href="{{route('topics.destroy', $topic->slug)}}" class="btn btn-default btn-sm" onclick="event.preventDefault();
+                                    document.getElementById('delete-form').submit();"><i class="far fa-trash-alt"></i></a>
+                                    <form id="delete-form" action="{{route('topics.destroy', $topic->slug)}}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                    </form> 
                             
                             @else
                             
-                                <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></a>
+                                <a href="{{route('topics.edit', $topic->slug)}}" class="btn btn-default btn-sm"><i class="far fa-edit"></i></a>
+                                <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></a>
 
                             @endif
                         @endauth
@@ -79,12 +93,21 @@
                             <div class="title h5">
                                 <a href="{{ route('user', $reply->user->uuid) }}"><b>{{ $reply->user->name }}</b></a>
                             </div>
-                        <h6 class="text-muted time">{{ $reply->created_at->diffForHumans() }}</h6>
+                        <h6 class="text-muted time">{{ $reply->created_at->diffForHumans() }}
+                            @if($reply->created_at != $reply->updated_at)
+                                | This reply is updated by {{$reply->user->name}} at {{$reply->updated_at->diffForHumans()}} 
+                            @endif
+                        </h6>
                         </div>
                         <p class="text-right">
                             @auth
-                            <a href="{{ route('edit_reply', $reply->id) }}" class="btn btn-warning btn-sm" ><i class="far fa-edit"></i></a>
-                            <a href="{{ route('delete_reply', $reply->id) }}" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+                            <a href="{{ route('edit_reply', $reply->id) }}" class="btn btn-default btn-sm" ><i class="far fa-edit"></i></a>
+                            <a href="{{ route('destroy_reply', $reply->id) }}" class="btn btn-default btn-sm" onclick="event.preventDefault();
+                                    document.getElementById('delete-form-reply').submit();"><i class="far fa-trash-alt"></i></a>
+                                    <form id="delete-form-reply" action="{{ route('destroy_reply', $reply->id) }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                    </form> 
                             @endauth
                         </p>
                     </div> 

@@ -33,11 +33,11 @@ class TopicsController extends Controller
 
         $topic_counter = Topic::get()->count();
 
-        $lastresponse = Reply::latest()->first();
+        // $lastresponse = Reply::latest()->first();
 
         // dd($lastresponse);
 
-        return view('topics.index', compact('topics', 'lastresponse', 'topic_counter'));
+        return view('topics.index', compact('topics', 'topic_counter'));
     }
 
     /**
@@ -59,7 +59,7 @@ class TopicsController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(), [
-            'title' => 'required',
+            'title' => 'required|max:60|min:5',
             'message' => 'required|min:10',
         ]);
 
@@ -111,7 +111,23 @@ class TopicsController extends Controller
      */
     public function update(Request $request, Topic $topic)
     {
-        //
+        // dd($request->all());
+
+
+        $this->validate(request(), [
+            'title' => 'required|max:60|min:5',
+            'message' => 'required|min:10',
+        ]);
+
+
+        $topic->title = request('title');
+        $topic->slug = preg_replace('/\s+/', '-', request('title'));
+        $topic->message = request('message');
+        
+        $topic->save();
+
+        return redirect()->route('topics.show', $topic);
+
     }
 
     /**
@@ -122,6 +138,8 @@ class TopicsController extends Controller
      */
     public function destroy(Topic $topic)
     {
-        //
+        $topic->delete();
+
+        return redirect()->route('topics.index');
     }
 }

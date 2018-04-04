@@ -1,8 +1,16 @@
 @extends('layouts.app')
+
+@section('title', 'Edit reply')
+
+
 @section('custom_css')
+
 <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
 @endsection
+
+
 @section('content')
 
 <div class="container">
@@ -26,6 +34,7 @@
                 <div class="post-description">
                     <form action="{{ route('update_reply', $reply->id)}}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="message">Update Reply</label>
                             <textarea class="form-control{{ $errors->has('reply') ? ' is-invalid' : '' }}" name="reply" id="reply" rows="20">{{ $reply->reply }}</textarea>
