@@ -4,9 +4,9 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Faker\Factory;
-use App\Topic;
+use App\Reply;
 
-class TopicsTableSeeder extends Seeder
+class RepliesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,18 +15,15 @@ class TopicsTableSeeder extends Seeder
      */
     public function run()
     {
-
         $faker = Factory::create();
-        Topic::truncate();
-        foreach(range(10, 150) as $i) {
-            Topic::create([
+        Reply::truncate();
+        foreach(range(10, 1000) as $i) {
+            Reply::create([
                 'user_id' => mt_rand(1, 150),
+                'topic_id' => mt_rand(1, 140),
                 'uuid' => Str::uuid(),
-                'title' => $faker->text(rand(10, 80)),
-                'slug' => preg_replace('/\s+/', '-', $faker->realText(rand(10, 30))),
-                'message' => $faker->realText(rand(80, 600)),
+                'reply' => $faker->realText(rand(80, 600)),
             ]);
         }
-
     }
 }

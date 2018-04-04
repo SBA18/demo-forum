@@ -17,7 +17,7 @@ class CreateTopicsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->string('uuid')->unique();
-            $table->string('title');
+            $table->string('title')->unique();
             $table->string('slug');
             $table->longText('message');
             $table->timestamps();
