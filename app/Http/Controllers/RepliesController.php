@@ -120,6 +120,7 @@ class RepliesController extends Controller
     {
         $reply->delete();
 
-        return redirect()->route('topics.show', $reply->topic);
+        // return redirect()->route('topics.show', $reply->topic);
+        return redirect()->back();
     }
 }

@@ -93,8 +93,6 @@
 
 @section('custom_js')
 
-<script type="text/javascript" src="{{ asset('DataTables/datatables.min.js') }}"></script>
-
 <script>
     $(document).ready( function () {
         $('#myTable').DataTable({
