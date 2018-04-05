@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
+@section('title', 'User activities')
+
 @section('custom_css')
 
-@section('title', 'User activities')
+<link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.min.css') }}"/>
+
 @endsection
 
 @section('content')
@@ -23,7 +26,7 @@
                 <h5 class="card-header">{{$user->name}}</h5>
                 <div class="card-body">
                     <h3>User Topics</h3>
-                    <table id="myTable" class="table table-striped">
+                    <table id="myTable1" class="table table-striped">
                         @if($topic_counter != 0)
                         <thead>
                             <tr>
@@ -48,7 +51,7 @@
 
                     <br>
                     <h3>User Replies</h3>
-                    <table id="myTable" class="table table-striped">
+                    <table id="myTable2" class="table table-striped">
                         @if($reply_counter != 0)
                         <thead>
                             <tr>
@@ -84,5 +87,15 @@
 @endsection
 
 @section('custom_js')
-
+<script>
+    $(document).ready( function () {
+        $('#myTable1').DataTable({
+            "order": [[ 1, "desc" ]],
+        });
+        $('#myTable2').DataTable({
+            "order": [[ 1, "desc" ]],
+        });
+        
+    } );
+</script>
 @endsection
