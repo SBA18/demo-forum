@@ -29,7 +29,7 @@
                             <thead>
 
                                 <tr>
-                                    <th scope="col" style="width:500px;">Topics</th>
+                                    <th scope="col" style="width:400px;">Topics</th>
                                     <th scope="col" style="text-align:center;">Answers</th>
                                     <th scope="col">Posted By</th>
                                     <th scope="col">Posted At</th>
