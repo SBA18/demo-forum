@@ -65,11 +65,7 @@
                     <ul class="pagination justify-content-end">
                     </ul>
                 </div>
-                <div class="card-footer text-muted">
-                 
-                        Online users :
-                   
-                </div>
+                
             </div>
         </div> 
        
@@ -79,7 +75,11 @@
             <div class="card">
                 <h5 class="card-header">Statistics</h5>
                 <div class="card-body">
-                    <p><strong>({{ $users_counter }}) Users - ({{ $topic_counter }}) Topics - ({{ $replies_counter }}) Replies</strong></p>
+                    <div class="row justify-content-center">
+                        <div class="col-sm-12 col-md-4 col-lg-4 text-center"><h5 class="card-header">{{ $users_counter }} Users</h5></div>
+                        <div class="col-sm-12 col-md-4 col-lg-4 text-center"><h5 class="card-header">{{ $topic_counter }} Topics</h5></div>
+                        <div class="col-sm-12 col-md-4 col-lg-4 text-center"><h5 class="card-header">{{ $replies_counter }} Replies</h5></div>
+                    </div>
                 </div>
                 <div class="card-footer text-muted">
                     {{date('Y')}} - Copyright - <a href="https://github.com/SBA18/">Sawers</a>
