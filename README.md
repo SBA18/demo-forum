@@ -1,3 +1,3 @@
-# demo-forum
+##Demo-forum##
 
-**Demo Forum running Laravel 5.6* **
+**Demo Forum running Laravel 5.6**
