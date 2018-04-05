@@ -32,9 +32,21 @@ class UsersController extends Controller
         //
     }
 
-    public function settings(User $user)
+    public function settings()
     {
-        return view('users.settings', compact('user'));
+        if (Auth::check() && \Route::current()->user === Auth::user()->uuid ) {
+
+            $user = Auth::user();
+
+            return view('users.settings', compact('user'));
+
+        } else {
+
+            return  abort(404);
+        }
+        
+       
+                
     }
 
 

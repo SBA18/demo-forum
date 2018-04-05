@@ -22,7 +22,12 @@ Auth::routes();
 // User private routes
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('users/{user}/settings', 'UsersController@settings')->name('users_settings');
+Route::get('user/{user}/settings', 'UsersController@settings')->name('users_settings');
+
+
+// User public activities routes
+
+Route::get('user/{user}', 'UsersController@show')->name('user');
 
 // Topic routes
 Route::resource('topics', 'TopicsController');
@@ -42,8 +47,6 @@ Route::put('reply/{reply}', 'RepliesController@update')->name('update_reply');
 Route::delete('reply/{reply}', 'RepliesController@destroy')->name('destroy_reply');
 
 
-// User public activities routes
-Route::get('user/{user}', 'UsersController@show')->name('user');
 
 
 // Members list routes
