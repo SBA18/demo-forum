@@ -28,7 +28,7 @@
             <div class="panel panel-white post panel-shadow alert">
                 <span class=""><h1><strong>{{ str_limit($topic->title, 60) }}</strong></h1></span> 
             </div>
-            <div class="panel panel-white post panel-shadow">
+            <div class="panel panel-white post panel-shadow border border-primary">
                 <div class="post-heading">
                     <div class="pull-left image">
                         <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
@@ -147,7 +147,7 @@
                 <input type="hidden" name="topic_id" value="{{ $topic->id }}">
                         <div class="form-group">
                             <label for="message">Quick Reply</label>
-                            <textarea class="form-control{{ $errors->has('reply') ? ' is-invalid' : '' }}" name="reply" id="reply" rows="3"></textarea>
+                            <textarea class="form-control{{ $errors->has('reply') ? ' is-invalid' : '' }}" name="reply" id="reply" rows="3" autofocus></textarea>
                             @if ($errors->has('reply'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('reply') }}</strong>

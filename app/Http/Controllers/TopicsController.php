@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Topic;
 use App\Reply;
+use App\User;
 use Auth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -33,11 +34,15 @@ class TopicsController extends Controller
 
         $topic_counter = Topic::get()->count();
 
+        $replies_counter = Reply::get()->count();
+
+        $users_counter = User::get()->count();
+
         // $lastresponse = Reply::latest()->first();
 
         // dd($lastresponse);
 
-        return view('topics.index', compact('topics', 'topic_counter'));
+        return view('topics.index', compact('topics', 'topic_counter', 'replies_counter', 'users_counter'));
     }
 
     /**

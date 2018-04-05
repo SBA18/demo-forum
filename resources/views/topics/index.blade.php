@@ -77,12 +77,12 @@
     <div class="row justify-content-center" style="margin-top:20px;">
         <div class="col-md-12">
             <div class="card">
-                <h5 class="card-header">Forum</h5>
+                <h5 class="card-header">Statistics</h5>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ea ut itaque molestiae, cupiditate ipsa ullam non aut fugit illo repellat voluptates eaque quisquam dicta repellendus dolorum? Delectus, accusantium quia.</p>
+                    <p><strong>({{ $users_counter }}) Users - ({{ $topic_counter }}) Topics - ({{ $replies_counter }}) Replies</strong></p>
                 </div>
                 <div class="card-footer text-muted">
-                    2 days ago
+                    {{date('Y')}} - Copyright - <a href="https://github.com/SBA18/">Sawers</a>
                 </div>
             </div>
         </div>
