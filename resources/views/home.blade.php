@@ -41,34 +41,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(Auth::user()->topics->count() === 0)
-                            <div class="alert alert-info">You don't have Topics yet !</div>
-                            @else
+                            @foreach(Auth::user()->topics as $topic)
+                            <tr>
+                            <th scope="row">{{$topic->id}}</th>
+                            <td><a href="{{ route('topics.show', $topic->slug) }}">{{str_limit($topic->title, 50)}}</a></td>
+                            <td>{{$topic->created_at->diffForHumans()}}</td>
+                            <td>
 
-                                @foreach(Auth::user()->topics as $topic)
-                                <tr>
-                                <th scope="row">{{$topic->id}}</th>
-                                <td><a href="{{ route('topics.show', $topic->slug) }}">{{str_limit($topic->title, 50)}}</a></td>
-                                <td>{{$topic->created_at->diffForHumans()}}</td>
-                                <td>
+                                <a href="{{route('topics.edit', $topic->slug)}}"><i class="far fa-edit"></i></a> |
 
-                                    <a href="{{route('topics.edit', $topic->slug)}}"><i class="far fa-edit"></i></a> |
-
-                                    @if($topic->replies->count() === 0)
-                                        <a href="{{route('topics.destroy', $topic->slug)}}" class="btn btn-default btn-sm" onclick="event.preventDefault();
-                                            document.getElementById('delete-form').submit();"><i class="far fa-trash-alt"></i></a>
-                                        <form id="delete-form" action="{{route('topics.destroy', $topic->slug)}}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                        </form> 
-                                    @else
-                                    <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></a>
-                                  
-                                    @endif
-                                </td>
-                                </tr>
-                                @endforeach
-                            @endif
+                                @if($topic->replies->count() === 0)
+                                    <a href="{{route('topics.destroy', $topic->slug)}}" class="btn btn-default btn-sm" onclick="event.preventDefault();
+                                        document.getElementById('delete-form').submit();"><i class="far fa-trash-alt"></i></a>
+                                    <form id="delete-form" action="{{route('topics.destroy', $topic->slug)}}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                    </form> 
+                                @else
+                                <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash-alt"></i></a>
+                                
+                                @endif
+                            </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     
@@ -85,28 +80,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if(Auth::user()->replies->count() === 0)
-                            <td><p class="alert alert-info"> You don't have replies yet !</p></td>
-                            @else
-                                @foreach(Auth::user()->replies as $reply)
-                                
-                                <tr>
-                                    <th scope="row">{{$reply->id}}</th>
-                                    <td><a href="{{ route('topics.show', $reply->topic->slug) }}">{{str_limit($reply->reply, 50)}}</a></td>
-                                    <td>{{$reply->created_at->diffForHumans()}}</td>
-                                    <td>
-                                        <a href="{{route('edit_reply', $reply->id)}}"><i class="far fa-edit"></i></a> |
+                            
+                            @foreach(Auth::user()->replies as $reply)
+                            
+                            <tr>
+                                <th scope="row">{{$reply->id}}</th>
+                                <td><a href="{{ route('topics.show', $reply->topic->slug) }}">{{str_limit($reply->reply, 50)}}</a></td>
+                                <td>{{$reply->created_at->diffForHumans()}}</td>
+                                <td>
+                                    <a href="{{route('edit_reply', $reply->id)}}"><i class="far fa-edit"></i></a> |
 
-                                        <a href="{{route('destroy_reply', $reply->id)}}" class="btn btn-default btn-sm" onclick="event.preventDefault();
-                                            document.getElementById('delete-form-reply').submit();"><i class="far fa-trash-alt"></i></a>
-                                            <form id="delete-form-reply" action="{{route('destroy_reply', $reply->id)}}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                                {{ method_field('DELETE') }}
-                                            </form> 
-                                    </td>
-                                </tr>
-                                @endforeach
-                            @endif
+                                    <a href="{{route('destroy_reply', $reply->id)}}" class="btn btn-default btn-sm" onclick="event.preventDefault();
+                                        document.getElementById('delete-form-reply').submit();"><i class="far fa-trash-alt"></i></a>
+                                        <form id="delete-form-reply" action="{{route('destroy_reply', $reply->id)}}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                        </form> 
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
@@ -158,11 +150,12 @@
 <script>
     $(document).ready( function () {
         $('#home_topics_table').DataTable({
-            "order": [[ 3, "desc" ]],
+            "order": [[ 2, "desc" ]],
         });
         $('#home_replies_table').DataTable({
-            "order": [[ 3, "desc" ]],
+            "order": [[ 2, "desc" ]],
         });
         
     } );
 </script>
+@endsection
