@@ -19,7 +19,10 @@ Route::get('/', 'TopicsController@index');
 
 Auth::routes();
 
+// User private routes
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('users/{user}/settings', 'UsersController@settings')->name('users_settings');
 
 // Topic routes
 Route::resource('topics', 'TopicsController');

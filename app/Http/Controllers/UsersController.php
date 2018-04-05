@@ -32,6 +32,11 @@ class UsersController extends Controller
         //
     }
 
+    public function settings(User $user)
+    {
+        return view('users.settings', compact('user'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

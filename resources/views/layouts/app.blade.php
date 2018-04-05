@@ -9,7 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} | @yield('title')</title>
-
+    <!-- Favicons -->
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -66,7 +67,7 @@
                                     <a class="dropdown-item" href="{{route('home')}}">Dashboard</a>
                                     <a class="dropdown-item" href="{{route('user', Auth::user()->uuid)}}">My Activities</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="">Settings</a>
+                                    <a class="dropdown-item" href="{{ route('users_settings', Auth::user()->uuid)}}">Settings</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
